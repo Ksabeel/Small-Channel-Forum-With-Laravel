@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">Channel Settings</div>
                 <div class="card-body">
-                    <form action="{{ route('channel.update', $channel->slug) }}" method="POST">
+                    <form action="{{ route('channel.update', $channel->slug) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -48,6 +48,10 @@
                                     <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                             @endif
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" name="image" id="image">
                         </div>
 
                         <button class="btn btn-outline-secondary" type="submit">Update</button>
