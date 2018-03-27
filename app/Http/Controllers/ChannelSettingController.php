@@ -32,14 +32,17 @@ class ChannelSettingController extends Controller
 
             // then dispatch
             //$this->dispatch(new UploadImage($channel, $fileId));
+
+            $channel->update([ 
+                // if you use online storage then remove the image_filename
+                'image_filename' => $filename,
+            ]);
         }
 
     	$channel->update([
     		'name' => $request->name,
     		'slug' => $request->slug,
     		'description' => $request->description,
-            // if you use online storage then remove the image_filename
-            'image_filename' => $filename,
     	]);
 
     	return redirect()->route('channel.edit', $channel->slug);
